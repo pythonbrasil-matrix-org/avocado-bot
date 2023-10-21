@@ -6,6 +6,8 @@ import simplematrixbotlib as botlib
 
 import credentials
 
+PREFIX = '!'
+
 creds = botlib.Creds(homeserver=credentials.HOMESERVER,
                      username=credentials.USERNAME,
                      password=credentials.PASSWORD,
@@ -21,25 +23,29 @@ config.store_path = credentials.CRYPTO_STORE
 avocado = botlib.Bot(creds=creds, config=config)
 
 @avocado.listener.on_message_event
-async def echo(room, message):
+async def fortune(room, message):
 
-    command = subprocess.run("fortune", capture_output=True)
-    fortune = command.stdout.decode("utf-8").expandtabs()\
-                                            .replace('\n', '\n    ')
+    match = botlib.MessageMatch(room=room,
+                                event=message,
+                                bot=avocado,
+                                prefix=PREFIX)
 
-    print(room.room_id, message)
+    if match.is_not_from_this_bot() and match.prefix() and \
+        match.command("fortune"):
 
-    #  await avocado.api.send_text_message(
-    await avocado.api.send_markdown_message(
-            room_id=room.room_id,
-            #  message=f"`{message.body}`",
-            message=f"""\
+        command = subprocess.run("fortune", capture_output=True)
+        fortune = command.stdout.decode("utf-8").expandtabs()\
+                                                .replace('\n', '\n    ')
+
+        print(room.room_id, message)
+
+        await avocado.api.send_markdown_message(
+                room_id=room.room_id,
+                message=f"""\
     {fortune}
 
-*beep-beep, I'm a bot*
+*beep-bop, I'm a bot*
 """,
-            msgtype="m.notice")
-            #  msgtype="m.text")
-
+                msgtype="m.notice")
 
 avocado.run()
