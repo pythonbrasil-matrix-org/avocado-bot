@@ -10,7 +10,7 @@ services:
     networks:
       - web-system_external_network
     volumes:
-      - /root/web-system/volumes/document_root:/avocado-bot
+      - .:/avocado-bot
 
 networks:
   web-system_external_network:
