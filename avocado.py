@@ -6,7 +6,7 @@ import simplematrixbotlib as botlib
 
 import credentials
 
-SIGNATURE ="*beep-bop, I'm a bot*"
+SIGNATURE = "*beep-bop, I'm a bot*"
 PREFIX = '!'
 
 creds = botlib.Creds(homeserver=credentials.HOMESERVER,
@@ -34,12 +34,12 @@ async def fortune(room, message):
     if match.is_not_from_this_bot() and match.prefix() and \
         match.command("fortune"):
 
-        command = subprocess.run("fortune", capture_output=True)
+        command = await subprocess.run("fortune", capture_output=True)
         fortune = command.stdout.decode("utf-8").expandtabs()\
                                                 .replace('\n', '\n    ')\
                                                 .strip()
 
-        print(room.room_id, message)
+        #print(room.room_id, message)
 
         await avocado.api.send_markdown_message(
                 room_id=room.room_id,
@@ -61,20 +61,20 @@ async def update(room, message):
     if match.is_not_from_this_bot() and match.prefix() and \
         match.command("update"):
 
-        command = subprocess.run(["git", "stash"], shell=True,
+        command = await subprocess.run(["git", "stash"], shell=True,
                                  capture_output=True)
         update_msg = command.stdout.decode("utf-8").expandtabs()\
                                                 .replace('\n', '\n    ')\
                                                 .strip()
 
-        command = subprocess.run(["git", "pull"], shell=True,
+        command = await subprocess.run(["git", "pull"], shell=True,
                                  capture_output=True)
 
         update_msg += command.stdout.decode("utf-8").expandtabs()\
                                                 .replace('\n', '\n    ')\
                                                 .strip()
 
-        print(room.room_id, message)
+        #print(room.room_id, message)
 
         await avocado.api.send_markdown_message(
                 room_id=room.room_id,
