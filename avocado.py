@@ -94,7 +94,7 @@ Rebooting now... (version x.x.x)
 {SIGNATURE}
 """,
                 msgtype="m.notice")
-        avocado.async_client.close()
+        await avocado.async_client.close()
         #  exit(0)
 
 @avocado.listener.on_startup
