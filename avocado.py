@@ -61,21 +61,16 @@ async def update(room, message):
     if match.is_not_from_this_bot() and match.prefix() and \
         match.command("update"):
 
-        update_msg = "\n$ git stash\n"
-
-        #  command = subprocess.run(["git", "stash"], shell=True,
         command = subprocess.run(["git", "stash"],
                                  capture_output=True)
-        update_msg += command.stdout.decode("utf-8").expandtabs()\
+        git_stash_output = command.stdout.decode("utf-8").expandtabs()\
                                                 .replace('\n', '\n    ')\
                                                 .strip()
 
-        update_msg += "\n$ git pull\n"
-        #  command = subprocess.run(["git", "pull"], shell=True,
         command = subprocess.run(["git", "pull"],
                                  capture_output=True)
 
-        update_msg += command.stdout.decode("utf-8").expandtabs()\
+        git_pull_output = command.stdout.decode("utf-8").expandtabs()\
                                                 .replace('\n', '\n    ')\
                                                 .strip()
 
@@ -86,7 +81,13 @@ async def update(room, message):
                 message=f"""\
 I'm updating:
 
-    {update_msg}
+$ git stash
+
+    {git_stash_output}
+
+$ git pull
+
+    {git_pull_output}
 
 Rebooting now... (version x.x.x)
 
