@@ -20,7 +20,13 @@ avocado = botlib.Bot(creds=creds, config=config)
 
 @avocado.listener.on_message_event
 async def echo(room, message):
-    print(room, message)
+
+    print(room.room_id, message)
+
+    await avocado.api.send_text_message(
+            room_id=room.room_id,
+            message=f"`{message.body}`",
+            msgtype="m.notice")
 
 
 avocado.run()
