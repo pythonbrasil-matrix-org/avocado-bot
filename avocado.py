@@ -58,6 +58,7 @@ async def online_notice(room_id):
     I'm online!
 
 {SIGNATURE}
-"""
+""",
+        msgtype="m.notice")
 
 avocado.run()
