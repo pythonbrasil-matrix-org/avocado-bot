@@ -50,7 +50,7 @@ async def fortune(room, message):
 """,
                 msgtype="m.notice")
 
-@avocado.listener.on_startup()
+@avocado.listener.on_startup
 async def online_notice(room_id):
     await avocado.api.send_markdown_message(
         room_id=room_id,
