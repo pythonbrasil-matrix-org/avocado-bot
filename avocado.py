@@ -94,7 +94,8 @@ Rebooting now... (version x.x.x)
 {SIGNATURE}
 """,
                 msgtype="m.notice")
-        exit(0)
+        avocado.async_client.close()
+        #  exit(0)
 
 @avocado.listener.on_startup
 async def online_notice(room_id):
