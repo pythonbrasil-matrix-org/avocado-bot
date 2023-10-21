@@ -34,7 +34,7 @@ async def fortune(room, message):
     if match.is_not_from_this_bot() and match.prefix() and \
         match.command("fortune"):
 
-        command = await subprocess.run("fortune", capture_output=True)
+        command = subprocess.run("fortune", capture_output=True)
         fortune = command.stdout.decode("utf-8").expandtabs()\
                                                 .replace('\n', '\n    ')\
                                                 .strip()
@@ -61,13 +61,13 @@ async def update(room, message):
     if match.is_not_from_this_bot() and match.prefix() and \
         match.command("update"):
 
-        command = await subprocess.run(["git", "stash"], shell=True,
+        command = subprocess.run(["git", "stash"], shell=True,
                                  capture_output=True)
         update_msg = command.stdout.decode("utf-8").expandtabs()\
                                                 .replace('\n', '\n    ')\
                                                 .strip()
 
-        command = await subprocess.run(["git", "pull"], shell=True,
+        command = subprocess.run(["git", "pull"], shell=True,
                                  capture_output=True)
 
         update_msg += command.stdout.decode("utf-8").expandtabs()\
@@ -88,7 +88,7 @@ Rebooting now... (version x.x.x)
 {SIGNATURE}
 """,
                 msgtype="m.notice")
-    exit(0)
+        exit(0)
 
 @avocado.listener.on_startup
 async def online_notice(room_id):
