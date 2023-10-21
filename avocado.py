@@ -99,10 +99,22 @@ Rebooting now... (version x.x.x)
 
 @avocado.listener.on_startup
 async def online_notice(room_id):
+                             #git log -n1 --pretty='%h'
+    command = subprocess.run(["git", "log",  "-n1", "--pretty='%h'"],
+                             capture_output=True)
+    version = command.stdout.decode("utf-8").expandtabs().strip()
+
+    date = subprocess.run(["git", "log",  "-n1", "--pretty='%h'"],
+                          capture_output=True) \
+                                     .stdout \
+                                     .decode("utf-8") \
+                                     .expandtabs() \
+                                     .strip()
+
     await avocado.api.send_markdown_message(
         room_id=room_id,
         message=f"""\
-    I'm online!
+    I'm online! (version {version}, {date})
 
 {SIGNATURE}
 """,
