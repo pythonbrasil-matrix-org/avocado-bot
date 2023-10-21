@@ -1,5 +1,4 @@
 FROM python:3.11-bookworm
-# FROM python:latest
 
 WORKDIR /avocado-bot
 
@@ -13,7 +12,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt update && \
     pip install --upgrade pip && \
     pip install "matrix-nio[e2e]" simplematrixbotlib && \
     echo 'export PATH="$PATH:/usr/games"' >> /root/.bashrc
-    # echo 'export PATH="$PATH:/usr/games"' >> /root/.bashrc && \
-    # source /root/.bashrc
+
+RUN ln -s /usr/games/fortune /usr/bin
 
 CMD [ "python", "avocado.py" ]
