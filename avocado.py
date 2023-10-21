@@ -23,10 +23,12 @@ async def echo(room, message):
 
     print(room.room_id, message)
 
-    await avocado.api.send_text_message(
+    #  await avocado.api.send_text_message(
+    await avocado.api.send_markdown_message(
             room_id=room.room_id,
             message=f"`{message.body}`",
             msgtype="m.notice")
+            #  msgtype="m.text")
 
 
 avocado.run()
