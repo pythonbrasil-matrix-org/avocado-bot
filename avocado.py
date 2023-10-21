@@ -61,13 +61,15 @@ async def update(room, message):
     if match.is_not_from_this_bot() and match.prefix() and \
         match.command("update"):
 
-        command = subprocess.run(["git", "stash"], shell=True,
+        #  command = subprocess.run(["git", "stash"], shell=True,
+        command = subprocess.run(["git", "stash"],
                                  capture_output=True)
         update_msg = command.stdout.decode("utf-8").expandtabs()\
                                                 .replace('\n', '\n    ')\
                                                 .strip()
 
-        command = subprocess.run(["git", "pull"], shell=True,
+        #  command = subprocess.run(["git", "pull"], shell=True,
+        command = subprocess.run(["git", "pull"],
                                  capture_output=True)
 
         update_msg += command.stdout.decode("utf-8").expandtabs()\
