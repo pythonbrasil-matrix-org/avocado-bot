@@ -59,8 +59,8 @@ async def update(room, message):
                                 bot=avocado,
                                 prefix=PREFIX)
 
-    if match.is_not_from_this_bot() and match.prefix() and \
-        match.command("update"):
+    if match.is_not_from_this_bot() and match.is_from_allowed_user() \
+            and match.prefix() and match.command("update"):
 
         command = subprocess.run(["git", "log",  "-n1", "--pretty=%H"],
                                  capture_output=True)
