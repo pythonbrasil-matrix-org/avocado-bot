@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+
+  avocado:
+    image: avocado:0.0.1
+    restart: always
+    stdin_open: true
+    tty: true
+    networks:
+      - web-system_external_network
+    volumes:
+      - /root/web-system/volumes/document_root:/avocado-bot
+
+networks:
+  web-system_external_network:
+    external: true
