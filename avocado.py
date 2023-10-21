@@ -6,7 +6,8 @@ import simplematrixbotlib as botlib
 
 import botsecrets
 
-SIGNATURE = "*beep-bop, I'm a bot*"
+#  SIGNATURE = "*beep-bop, I'm a bot*"
+SIGNATURE = ""
 PREFIX = '!'
 
 creds = botlib.Creds(homeserver=botsecrets.HOMESERVER,
