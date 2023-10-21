@@ -6,7 +6,7 @@ import simplematrixbotlib as botlib
 
 import credentials
 
-SIGNATURE ="*beep-bop, I'm a [bot](https://github.com/pythonbrasil-matrix-org/avocado-bot)*"
+SIGNATURE ="*beep-bop, I'm a bot*"
 PREFIX = '!'
 
 creds = botlib.Creds(homeserver=credentials.HOMESERVER,
@@ -49,5 +49,15 @@ async def fortune(room, message):
 {SIGNATURE}
 """,
                 msgtype="m.notice")
+
+@avocado.listener.on_startup()
+async def online_notice(room_id):
+    await avocado.api.send_markdown_message(
+        room_id=room_id,
+        message=f"""\
+    I'm online!
+
+{SIGNATURE}
+"""
 
 avocado.run()
