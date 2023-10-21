@@ -104,7 +104,7 @@ async def online_notice(room_id):
                              capture_output=True)
     version = command.stdout.decode("utf-8").expandtabs().strip()
 
-    date = subprocess.run(["git", "log",  "-n1", "--pretty='%h'"],
+    date = subprocess.run(["git", "log",  "-n1", "--pretty=%ar"],
                           capture_output=True) \
                                      .stdout \
                                      .decode("utf-8") \
