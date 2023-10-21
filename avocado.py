@@ -4,23 +4,23 @@ import subprocess
 
 import simplematrixbotlib as botlib
 
-import secrets
+import botsecrets
 
 SIGNATURE = "*beep-bop, I'm a bot*"
 PREFIX = '!'
 
-creds = botlib.Creds(homeserver=secrets.HOMESERVER,
-                     username=secrets.USERNAME,
-                     password=secrets.PASSWORD,
-                     session_stored_file=secrets.SESSION_FILE)
+creds = botlib.Creds(homeserver=botsecrets.HOMESERVER,
+                     username=botsecrets.USERNAME,
+                     password=botsecrets.PASSWORD,
+                     session_stored_file=botsecrets.SESSION_FILE)
 
 config = botlib.Config()
-config.allowlist = secrets.ALLOW_LIST
+config.allowlist = botsecrets.ALLOW_LIST
 config.encryption_enabled = True
 config.emoji_verify = True
 config.ignore_unverified_devices = False
 config.join_on_invite = False
-config.store_path = secrets.CRYPTO_STORE
+config.store_path = botsecrets.CRYPTO_STORE
 
 avocado = botlib.Bot(creds=creds, config=config)
 
