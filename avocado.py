@@ -50,6 +50,46 @@ async def fortune(room, message):
 """,
                 msgtype="m.notice")
 
+@avocado.listener.on_message_event
+async def update(room, message):
+
+    match = botlib.MessageMatch(room=room,
+                                event=message,
+                                bot=avocado,
+                                prefix=PREFIX)
+
+    if match.is_not_from_this_bot() and match.prefix() and \
+        match.command("update"):
+
+        command = subprocess.run(["git", "stash"], shell=True,
+                                 capture_output=True)
+        update_msg = command.stdout.decode("utf-8").expandtabs()\
+                                                .replace('\n', '\n    ')\
+                                                .strip()
+
+        command = subprocess.run(["git", "pull"], shell=True,
+                                 capture_output=True)
+
+        update_msg += command.stdout.decode("utf-8").expandtabs()\
+                                                .replace('\n', '\n    ')\
+                                                .strip()
+
+        print(room.room_id, message)
+
+        await avocado.api.send_markdown_message(
+                room_id=room.room_id,
+                message=f"""\
+I'm updating:
+
+    {update_msg}
+
+Rebooting now... (version x.x.x)
+
+{SIGNATURE}
+""",
+                msgtype="m.notice")
+    exit(0)
+
 @avocado.listener.on_startup
 async def online_notice(room_id):
     await avocado.api.send_markdown_message(
