@@ -100,7 +100,7 @@ Rebooting now... (version x.x.x)
 @avocado.listener.on_startup
 async def online_notice(room_id):
                              #git log -n1 --pretty='%h'
-    command = subprocess.run(["git", "log",  "-n1", "--pretty='%h'"],
+    command = subprocess.run(["git", "log",  "-n1", "--pretty=%H"],
                              capture_output=True)
     version = command.stdout.decode("utf-8").expandtabs().strip()
 
