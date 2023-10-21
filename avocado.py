@@ -35,7 +35,8 @@ async def fortune(room, message):
 
         command = subprocess.run("fortune", capture_output=True)
         fortune = command.stdout.decode("utf-8").expandtabs()\
-                                                .replace('\n', '\n    ')
+                                                .replace('\n', '\n    ')\
+                                                .strip()
 
         print(room.room_id, message)
 
