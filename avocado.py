@@ -61,6 +61,17 @@ async def update(room, message):
     if match.is_not_from_this_bot() and match.prefix() and \
         match.command("update"):
 
+        command = subprocess.run(["git", "log",  "-n1", "--pretty=%H"],
+                                 capture_output=True)
+        version = command.stdout.decode("utf-8").expandtabs().strip()
+
+        date = subprocess.run(["git", "log",  "-n1", "--pretty=%ar"],
+                              capture_output=True) \
+                                         .stdout \
+                                         .decode("utf-8") \
+                                         .expandtabs() \
+                                         .strip()
+
         command = subprocess.run(["git", "stash"],
                                  capture_output=True)
         git_stash_output = command.stdout.decode("utf-8").expandtabs()\
@@ -89,7 +100,7 @@ $ git pull
 
     {git_pull_output}
 
-Rebooting now... (version x.x.x)
+Rebooting now... (version {version}, {date})
 
 {SIGNATURE}
 """,
