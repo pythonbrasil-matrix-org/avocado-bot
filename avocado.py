@@ -6,6 +6,7 @@ import simplematrixbotlib as botlib
 
 import credentials
 
+SIGNATURE ="*beep-bop, I'm a [bot](https://github.com/pythonbrasil-matrix-org/avocado-bot)*"
 PREFIX = '!'
 
 creds = botlib.Creds(homeserver=credentials.HOMESERVER,
@@ -45,7 +46,7 @@ async def fortune(room, message):
                 message=f"""\
     {fortune}
 
-*beep-bop, I'm a bot*
+{SIGNATURE}
 """,
                 msgtype="m.notice")
 
