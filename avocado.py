@@ -136,7 +136,7 @@ async def reboot(room, message):
         await avocado.api.send_markdown_message(
                 room_id=room.room_id,
                 message=f"""\
-Rebooting now... (version {version}, {date})
+    Rebooting... (version {version}, {date})
 
 {SIGNATURE}
 """,
