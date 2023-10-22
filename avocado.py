@@ -6,9 +6,9 @@ import simplematrixbotlib as botlib
 
 import botsecrets
 
+PREFIX = '!'
 #  SIGNATURE = "*beep-bop, I'm a bot*"
 SIGNATURE = ""
-PREFIX = '!'
 
 creds = botlib.Creds(homeserver=botsecrets.HOMESERVER,
                      username=botsecrets.USERNAME,
