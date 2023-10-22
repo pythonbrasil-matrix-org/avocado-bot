@@ -19,7 +19,7 @@ config = botlib.Config()
 config.allowlist = botsecrets.ALLOW_LIST
 config.encryption_enabled = True
 config.emoji_verify = True
-config.ignore_unverified_devices = False
+config.ignore_unverified_devices = True
 config.join_on_invite = False
 config.store_path = botsecrets.CRYPTO_STORE
 
