@@ -8,7 +8,7 @@ import botsecrets
 
 PREFIX = '!'
 #  SIGNATURE = "*beep-bop, I'm a bot*"
-SIGNATURE = ""
+SIGNATURE = "---"
 
 creds = botlib.Creds(homeserver=botsecrets.HOMESERVER,
                      username=botsecrets.USERNAME,
