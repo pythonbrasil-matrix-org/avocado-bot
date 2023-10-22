@@ -110,6 +110,43 @@ Rebooting now... (version {version}, {date})
                 msgtype="m.notice")
         exit(0)
 
+@avocado.listener.on_message_event
+async def reboot(room, message):
+
+    match = botlib.MessageMatch(room=room,
+                                event=message,
+                                bot=avocado,
+                                prefix=PREFIX)
+
+    if match.is_not_from_this_bot() and match.is_from_allowed_user() \
+            and match.prefix() and match.command("reboot"):
+
+        command = subprocess.run(["git", "log",  "-n1", "--pretty=%H"],
+                                 capture_output=True)
+        version = command.stdout.decode("utf-8").expandtabs().strip()
+
+        date = subprocess.run(["git", "log",  "-n1", "--pretty=%ar"],
+                              capture_output=True) \
+                                         .stdout \
+                                         .decode("utf-8") \
+                                         .expandtabs() \
+                                         .strip()
+
+
+        await avocado.api.send_markdown_message(
+                room_id=room.room_id,
+                message=f"""\
+Rebooting now... (version {version}, {date})
+
+{SIGNATURE}
+""",
+                msgtype="m.notice")
+
+        #  print(room.room_id, message)
+
+        exit(0)
+
+
 @avocado.listener.on_startup
 async def online_notice(room_id):
                              #git log -n1 --pretty='%h'
