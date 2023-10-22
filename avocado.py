@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 
-# testinggggZABT
-
 import subprocess
 
 import simplematrixbotlib as botlib
