@@ -4,6 +4,7 @@ services:
 
   avocado:
     image: avocado:0.0.1
+    user: "33:33"
     restart: always
     stdin_open: true
     tty: true
