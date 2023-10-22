@@ -36,21 +36,25 @@ async def fortune(room, message):
     if match.is_not_from_this_bot() and match.prefix() and \
         match.command("fortune"):
 
-        command = subprocess.run("fortune", capture_output=True)
-        fortune = command.stdout.decode("utf-8").expandtabs()\
-                                                .replace('\n', '\n    ')\
-                                                .strip()
+        fortune = subprocess.run("fortune", capture_output=True,
+                                 encoding="utf-8")\
+                                 .stdout\
+                                 .expandtabs()\
+                                 .replace('\n', '\n    ')\
+                                 .strip()
 
         print(room.room_id, message)
         print(fortune)
 
-        await avocado.api.send_markdown_message(
-                room_id=room.room_id,
-                message=f"""\
+        notice=f"""\
     {fortune}
 
 {SIGNATURE}
-""",
+"""
+
+        await avocado.api.send_markdown_message(
+                room_id=room.room_id,
+                message=notice,
                 msgtype="m.notice")
 
 @avocado.listener.on_message_event
@@ -64,35 +68,32 @@ async def update(room, message):
     if match.is_not_from_this_bot() and match.is_from_allowed_user() \
             and match.prefix() and match.command("update"):
 
-        command = subprocess.run(["git", "log",  "-n1", "--pretty=%H"],
-                                 capture_output=True)
-        version = command.stdout.decode("utf-8").expandtabs().strip()
+        version = subprocess.run(["git", "log",  "-n1", "--pretty=%H"],
+                                 capture_output=True, encoding="utf-8") \
+                                         .stdout.expandtabs().strip()
 
         date = subprocess.run(["git", "log",  "-n1", "--pretty=%ar"],
-                              capture_output=True) \
-                                         .stdout \
-                                         .decode("utf-8") \
-                                         .expandtabs() \
+                              capture_output=True, encoding="utf-8") \
+                                         .stdout.expandtabs().strip()
+
+        git_stash_output = subprocess.run(["git", "stash"],
+                                          capture_output=True,
+                                          encoding="utf-8")\
+                                          .stdout\
+                                          .expandtabs()\
+                                          .replace('\n', '\n    ')\
+                                          .strip()
+
+        git_pull_output = subprocess.run(["git", "pull"], capture_output=True,
+                                         encoding="utf-8")\
+                                         .stdout\
+                                         .expandtabs()\
+                                         .replace('\n', '\n    ')\
                                          .strip()
-
-        command = subprocess.run(["git", "stash"],
-                                 capture_output=True)
-        git_stash_output = command.stdout.decode("utf-8").expandtabs()\
-                                                .replace('\n', '\n    ')\
-                                                .strip()
-
-        command = subprocess.run(["git", "pull"],
-                                 capture_output=True)
-
-        git_pull_output = command.stdout.decode("utf-8").expandtabs()\
-                                                .replace('\n', '\n    ')\
-                                                .strip()
 
         #print(room.room_id, message)
 
-        await avocado.api.send_markdown_message(
-                room_id=room.room_id,
-                message=f"""\
+        notice=f"""\
 I'm updating:
 
 $ git stash
@@ -106,7 +107,11 @@ $ git pull
 Rebooting now... (version {version}, {date})
 
 {SIGNATURE}
-""",
+"""
+
+        await avocado.api.send_markdown_message(
+                room_id=room.room_id,
+                message=notice,
                 msgtype="m.notice")
         exit(0)
 
