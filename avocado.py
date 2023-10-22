@@ -122,9 +122,15 @@ async def reboot(room, message):
     if match.is_from_allowed_user() and match.prefix() \
         and match.command("reboot"):
 
-        command = subprocess.run(["git", "log",  "-n1", "--pretty=%H"],
-                                 capture_output=True)
-        version = command.stdout.decode("utf-8").expandtabs().strip()
+        #  command = subprocess.run(["git", "log",  "-n1", "--pretty=%H"],
+        #                           capture_output=True)
+        #  version = command.stdout.decode("utf-8").expandtabs().strip()
+        version = subprocess.run(["git", "log",  "-n1", "--pretty=%H"],
+                                 capture_output=True) \
+                                         .stdout \
+                                         .decode("utf-8") \
+                                         .expandtabs() \
+                                         .strip()
 
         date = subprocess.run(["git", "log",  "-n1", "--pretty=%ar"],
                               capture_output=True) \
