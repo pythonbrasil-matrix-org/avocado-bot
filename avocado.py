@@ -118,8 +118,9 @@ async def reboot(room, message):
                                 bot=avocado,
                                 prefix=PREFIX)
 
-    if match.is_not_from_this_bot() and match.is_from_allowed_user() \
-            and match.prefix() and match.command("reboot"):
+    #  if match.is_not_from_this_bot() and match.is_from_allowed_user() \
+    if match.is_from_allowed_user() and match.prefix() \
+        and match.command("reboot"):
 
         command = subprocess.run(["git", "log",  "-n1", "--pretty=%H"],
                                  capture_output=True)
