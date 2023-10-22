@@ -41,7 +41,8 @@ async def fortune(room, message):
                                                 .replace('\n', '\n    ')\
                                                 .strip()
 
-        #print(room.room_id, message)
+        print(room.room_id, message)
+        print(fortune)
 
         await avocado.api.send_markdown_message(
                 room_id=room.room_id,
@@ -107,7 +108,6 @@ Rebooting now... (version {version}, {date})
 {SIGNATURE}
 """,
                 msgtype="m.notice")
-        #  await avocado.async_client.close()
         exit(0)
 
 @avocado.listener.on_startup
