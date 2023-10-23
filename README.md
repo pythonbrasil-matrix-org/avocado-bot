@@ -21,13 +21,13 @@ git clone https://github.com/pythonbrasil-matrix-org/avocado-bot.git
 cd avocado-bot
 ```
 
-### 3. copy the file botsecrets.py.example to botsecrets.py
+### 3. copy the file `botsecrets.py.example` to `botsecrets.py`
 
 ```
 cp botsecrets.py.example botsecrets.py
 ```
 
-### 4. edit the file botsecrets.py with the bot's credentials, owners' usernames etc
+### 4. edit the file `botsecrets.py` with the bot's credentials, owners' usernames etc
 
 ### 5. build the docker image
 
