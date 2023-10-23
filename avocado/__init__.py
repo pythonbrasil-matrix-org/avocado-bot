@@ -13,8 +13,8 @@ STARTUP_FUNCTION_REGISTRY = {}
 def register_command(f, *args, **kwargs):
 
     @wraps(f)
-    def decorator(*args, **kwargs):
-        return f(*args, **kwargs)
+    async def decorator(*args, **kwargs):
+        return await f(*args, **kwargs)
 
     COMMAND_REGISTRY.update({f.__name__: f})
 

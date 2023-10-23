@@ -6,7 +6,8 @@ from __main__ import register_command
 from __main__ import PREFIX
 from __main__ import SIGNATURE
 
-@register_command
+#  @register_command
+@avocado.listener.on_message_event
 async def update(room, message):
 
     match = botlib.MessageMatch(room=room,
