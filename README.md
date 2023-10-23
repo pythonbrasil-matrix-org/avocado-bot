@@ -50,6 +50,7 @@ sudo apt install libolm-dev  # debian, ubuntu etc
 ```
 
 ```
-pip install "matrix-nio[e2e]" simplematrixbotlib
+pip install "matrix-nio[e2e]"
+pip install git+https://github.com/i10b/simplematrixbotlib.git@master
 ```
 

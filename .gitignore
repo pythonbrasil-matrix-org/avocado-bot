@@ -6,3 +6,4 @@ crypto_storage/
 store/
 
 __pycache__/
+script.sh
