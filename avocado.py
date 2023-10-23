@@ -123,10 +123,8 @@ async def reboot(room, message):
                                 bot=avocado,
                                 prefix=PREFIX)
 
-    #  if match.is_not_from_this_bot() and match.is_from_allowed_user() \
     if match.is_from_allowed_user() and match.prefix() \
         and match.command('reboot'):
-    #  if match.is_from_allowed_user() and message.body == "!reboot":
 
         version = subprocess.run(["git", "log",  "-n1", "--pretty=%H"],
                                  capture_output=True) \
@@ -159,10 +157,12 @@ async def reboot(room, message):
 
 @avocado.listener.on_startup
 async def online_notice(room_id):
-                             #git log -n1 --pretty='%h'
-    command = subprocess.run(["git", "log",  "-n1", "--pretty=%H"],
-                             capture_output=True)
-    version = command.stdout.decode("utf-8").expandtabs().strip()
+    version = subprocess.run(["git", "log",  "-n1", "--pretty=%H"],
+                             capture_output=True, encoding="utf-8")\
+                                     .stdout\
+                                     .expandtabs() \
+                                     .strip()
+
 
     date = subprocess.run(["git", "log",  "-n1", "--pretty=%ar"],
                           capture_output=True) \
