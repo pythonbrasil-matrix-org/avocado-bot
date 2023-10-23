@@ -16,11 +16,11 @@ from .bot import avocado
 from commands import *
 from startup import *
 
-#  for command_name, command_function in COMMAND_REGISTRY.items():
-#      avocado.listener._registry.append([command_function, RoomMessageText])
+for command_name, command_function in COMMAND_REGISTRY.items():
+    avocado.listener._registry.append([command_function, RoomMessageText])
 
-#  for startup_function_name, startup_function in\
-#          STARTUP_FUNCTION_REGISTRY.items():
-#      avocado.listener._startup_registry.append(startup_function)
+for startup_function_name, startup_function in\
+        STARTUP_FUNCTION_REGISTRY.items():
+    avocado.listener._startup_registry.append(startup_function)
 
 avocado.run()

@@ -6,8 +6,8 @@ from __main__ import register_startup_function
 from __main__ import PREFIX
 from __main__ import SIGNATURE
 
-#  @register_startup_function
-@avocado.listener.on_startup
+#  @avocado.listener.on_startup
+@register_startup_function
 async def online_notice(room_id):
     version = subprocess.run(["git", "log",  "-n1", "--pretty=%H"],
                              capture_output=True, encoding="utf-8")\
