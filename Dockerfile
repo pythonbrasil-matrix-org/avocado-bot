@@ -7,7 +7,7 @@ ENV LC_ALL=pt_BR
 ENV LANGUAGE=pt
 
 RUN DEBIAN_FRONTEND=noninteractive apt update && \
-    DEBIAN_FRONTEND=noninteractive apt install -y fortunes-br libolm-dev locales python3-venv && \
+    DEBIAN_FRONTEND=noninteractive apt install -y fortunes-br libolm libolm-dev locales python3-venv && \
     dpkg-reconfigure locales && \
     pip install --upgrade pip && \
     pip install "matrix-nio[e2e]" simplematrixbotlib && \
