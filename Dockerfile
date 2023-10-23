@@ -15,4 +15,4 @@ RUN DEBIAN_FRONTEND=noninteractive apt update && \
 
 RUN ln -s /usr/games/fortune /usr/bin
 
-CMD [ "python", "avocado.py" ]
+CMD [ "python", "-m", "avocado" ]

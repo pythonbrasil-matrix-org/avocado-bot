@@ -15,6 +15,6 @@ def register_command(f, *args, **kwargs):
     def decorator(*args, **kwargs):
         return f(*args, **kwargs)
 
-    COMMAND_REGISTRY.update({f.__name__, f})
+    COMMAND_REGISTRY.update({f.__name__: f})
 
     return decorator
