@@ -1,6 +1,12 @@
 import subprocess
 
-@avocado.listener.on_startup
+from __main__ import avocado
+from __main__ import botlib
+from __main__ import register_startup_function
+from __main__ import PREFIX
+from __main__ import SIGNATURE
+
+@register_startup_function
 async def online_notice(room_id):
     version = subprocess.run(["git", "log",  "-n1", "--pretty=%H"],
                              capture_output=True, encoding="utf-8")\

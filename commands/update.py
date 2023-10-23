@@ -1,6 +1,5 @@
 import subprocess
 
-#  @avocado.listener.on_message_event
 from __main__ import avocado
 from __main__ import botlib
 from __main__ import register_command
