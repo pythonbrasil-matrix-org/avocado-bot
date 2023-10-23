@@ -3,5 +3,6 @@ botsecrets.py
 current_session.txt
 session.txt
 crypto_storage/
+store/
 
 __pycache__/
