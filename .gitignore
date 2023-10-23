@@ -1,5 +1,7 @@
 botsecrets.py
 
 current_session.txt
+session.txt
+crypto_storage/
 
 __pycache__/
