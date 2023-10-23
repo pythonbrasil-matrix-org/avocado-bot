@@ -1,6 +1,13 @@
 import subprocess
 
-@avocado.listener.on_message_event
+#  @avocado.listener.on_message_event
+from __main__ import avocado
+from __main__ import botlib
+from __main__ import register_command
+from __main__ import PREFIX
+from __main__ import SIGNATURE
+
+@register_command
 async def fortune(room, message):
 
     match = botlib.MessageMatch(room=room,
