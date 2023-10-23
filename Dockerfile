@@ -1,5 +1,5 @@
-FROM python:3.10-bullseye
-# FROM python:3.10-bookworm
+FROM python:3.11-bookworm
+# FROM python:3.10-bullseye
 
 WORKDIR /avocado-bot
 
@@ -7,7 +7,7 @@ ENV LANG=pt_BR.UTF-8
 ENV LC_ALL=pt_BR
 ENV LANGUAGE=pt
 
-RUN DEBIAN_FRONTEND=noninteractive apt update && \
+RUN DEBIAN_FRONTEND=noninteractive apt update && apt upgrade -y && \
     DEBIAN_FRONTEND=noninteractive apt install -y fortunes-br libolm-dev locales python3-venv && \
     dpkg-reconfigure locales && \
     pip install --upgrade pip && \
