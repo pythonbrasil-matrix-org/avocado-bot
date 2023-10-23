@@ -2,7 +2,7 @@
 
 ## matrix protocol bot
 
-(this is currently in the make)
+(this is currently being written)
 
 ## how to run
 
