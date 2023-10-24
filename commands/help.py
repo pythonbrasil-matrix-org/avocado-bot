@@ -12,6 +12,7 @@ from __main__ import COMMAND_REGISTRY
 #  @avocado.listener.on_message_event
 @register_command
 async def help(room, message):
+    """Exibe esta lista de comandos"""
 
     match = botlib.MessageMatch(room=room,
                                 event=message,
@@ -26,7 +27,7 @@ async def help(room, message):
         help += "    \n"
 
         for name, func in COMMAND_REGISTRY.items():
-            help += f"    {name} -\n"
+            help += f"    {name} - {func.__doc__ if hasattr(func, '__doc__') else ''}\n"
 
         print(room.room_id, message)
         print(help)
