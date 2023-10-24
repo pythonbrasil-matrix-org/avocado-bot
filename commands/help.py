@@ -34,7 +34,7 @@ async def help(room, message):
 {SIGNATURE}
 """
 
-        await avocado.api.send_markdown_message(
-                room_id=room.room_id,
-                message=notice,
-                msgtype="m.notice")
+    await avocado.api.send_markdown_message(
+            room_id=room.room_id,
+            message=notice,
+            msgtype="m.notice")
