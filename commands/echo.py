@@ -21,7 +21,7 @@ async def echo(room, message):
         match.command("echo"):
 
         #  text = message.body
-        text = ' '.join([arg for arg in match.args])
+        text = ' '.join([arg for arg in match.args()])
 
         print(room.room_id, message)
         print(text)
