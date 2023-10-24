@@ -10,7 +10,7 @@ WIDE_MAP = dict((i, i + 0xFEE0) for i in range(0x21, 0x7F))
 WIDE_MAP[0x20] = 0x3000
 
 
-def widen(s):
+def widen_text(s):
     """
     Convert all ASCII characters to the full-width counterpart.
 
@@ -34,7 +34,7 @@ async def widen(room, message):
         match.command("widen"):
 
         #  text = message.body
-        text = widen(' '.join([arg for arg in match.args()]))
+        text = widen_text(' '.join([arg for arg in match.args()]))
 
         print(room.room_id, message)
         print(text)
