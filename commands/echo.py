@@ -27,7 +27,7 @@ async def echo(room, message):
         print(text)
 
         notice=f"""\
-# {text}
+# {text.upper()}
 
 {SIGNATURE}
 """
