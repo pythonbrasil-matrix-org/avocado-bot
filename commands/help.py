@@ -23,7 +23,7 @@ async def help(room, message):
         match.command("help"):
 
         help = str()
-        help += "    Os comandos são:\n"
+        help += "Os comandos são:\n"
         help += "    \n"
 
         for name, func in COMMAND_REGISTRY.items():
