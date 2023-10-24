@@ -31,11 +31,13 @@ async def fortune2(room, message):
         print(room.room_id, message)
         print(fortune2)
 
-        notice=f"""\
-{fortune2}
+        notice=f"/rainbow {fortune2}"
 
-{SIGNATURE}
-"""
+#  #          notice=f"""\
+#  {fortune2}
+#
+#  {SIGNATURE}
+#  """
 
         await avocado.api.send_markdown_message(
                 room_id=room.room_id,
