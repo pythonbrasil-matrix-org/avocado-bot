@@ -18,17 +18,17 @@ async def help(room, message):
                                 bot=avocado,
                                 prefix=PREFIX)
 
-        help = str()
-        help += "    Os comandos são:\n"
-        help += "    \n"
+    help = str()
+    help += "    Os comandos são:\n"
+    help += "    \n"
 
-        for name, func in COMMAND_REGISTRY:
-            help += "    {name} -"
+    for name, func in COMMAND_REGISTRY:
+        help += "    {name} -"
 
-        print(room.room_id, message)
-        print(help)
+    print(room.room_id, message)
+    print(help)
 
-        notice=f"""\
+    notice=f"""\
     {help}
 
 {SIGNATURE}
