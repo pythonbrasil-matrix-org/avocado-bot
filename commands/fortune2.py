@@ -42,4 +42,4 @@ async def fortune2(room, message):
         await avocado.api.send_markdown_message(
                 room_id=room.room_id,
                 message=notice,
-                msgtype="m.notice")
+                msgtype="m.text")
