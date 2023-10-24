@@ -11,9 +11,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt update && apt upgrade -y && \
     DEBIAN_FRONTEND=noninteractive apt install -y fortunes-br libolm-dev locales python3-venv && \
     dpkg-reconfigure locales && \
     python -m venv .venv && \
-    .venv/bin/pip install --upgrade pip && \
-    .venv/bin/pip install "matrix-nio[e2e]" && \ 
-    .venv/bin/pip install git+https://github.com/i10b/simplematrixbotlib.git@master && \
+    /avocado-bot/.venv/bin/pip install --upgrade pip && \
+    /avocado-bot/.venv/bin/pip install "matrix-nio[e2e]" && \ 
+    /avocado-bot/.venv/bin/pip install git+https://github.com/i10b/simplematrixbotlib.git@master && \
     echo 'export PATH="$PATH:/usr/games"' >> /root/.bashrc && \
     echo 'source /avocado-bot/.venv/bin/activate' >> /root/.bashrc
 
