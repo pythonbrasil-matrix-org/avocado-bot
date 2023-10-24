@@ -1,3 +1,13 @@
+import subprocess
+
+VERSION = subprocess.run(["git", "log",  "-n1", "--pretty=%H"],
+                         capture_output=True, encoding="utf-8") \
+                                 .stdout.expandtabs().strip()
+
+DATE = subprocess.run(["git", "log",  "-n1", "--pretty=%ar"],
+                      capture_output=True, encoding="utf-8") \
+                                 .stdout.expandtabs().strip()
+
 from nio import RoomMessageText
 
 from . import botlib

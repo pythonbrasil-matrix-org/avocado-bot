@@ -35,6 +35,7 @@ async def help(room, message):
         notice=f"""\
     {help}
 
+    avocado bot (version {VERSION}, {DATE})
 {SIGNATURE}
 """
 
