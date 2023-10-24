@@ -23,7 +23,8 @@ async def fortune2(room, message):
         fortune2 = subprocess.run("fortune", capture_output=True,
                                  encoding="utf-8")\
                                  .stdout\
-                                 .expandtabs()
+                                 .strip()
+                                 #  .expandtabs()
                                  #  .strip()
                                  #  .replace('\n', '\n    ')\
 
