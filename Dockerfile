@@ -19,4 +19,4 @@ RUN DEBIAN_FRONTEND=noninteractive apt update && apt upgrade -y && \
 
 RUN ln -s /usr/games/fortune /usr/bin
 
-CMD [ "python", "-m", "avocado" ]
+CMD [ ".venv/bin/python", "-m", "avocado" ]
