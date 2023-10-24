@@ -23,7 +23,7 @@ async def help(room, message):
     help += "    \n"
 
     for name, func in COMMAND_REGISTRY.items():
-        help += "    {name} -"
+        help += f"    {name} -\n"
 
     print(room.room_id, message)
     print(help)
