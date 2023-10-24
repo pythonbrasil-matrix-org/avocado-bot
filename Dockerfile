@@ -19,7 +19,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt update && apt upgrade -y && \
 
 RUN ln -s /usr/games/fortune /usr/bin
 
-COPY init.sh
+COPY init.sh /avocado-bot/
 
 CMD [ "./init.sh" ]
 # CMD [ "/avocado-bot/.venv/bin/python", "-m", "avocado" ]
