@@ -10,6 +10,7 @@ from __main__ import SIGNATURE
 #  @avocado.listener.on_message_event
 @register_command
 async def fortune(room, message):
+    """Exibe uma frase talvez interessante"""
 
     match = botlib.MessageMatch(room=room,
                                 event=message,
