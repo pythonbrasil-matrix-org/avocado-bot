@@ -10,16 +10,16 @@ ENV LANGUAGE=pt
 RUN DEBIAN_FRONTEND=noninteractive apt update && apt upgrade -y && \
     DEBIAN_FRONTEND=noninteractive apt install -y fortunes-br libolm-dev locales python3-venv && \
     dpkg-reconfigure locales && \
-    python -m venv .venv && \
-    /avocado-bot/.venv/bin/pip install --upgrade pip && \
-    /avocado-bot/.venv/bin/pip install "matrix-nio[e2e]" && \ 
-    /avocado-bot/.venv/bin/pip install git+https://github.com/i10b/simplematrixbotlib.git@master && \
+    python -m venv /venv && \
+    /venv/bin/pip install --upgrade pip && \
+    /venv/bin/pip install "matrix-nio[e2e]" && \ 
+    /venv/bin/pip install git+https://github.com/i10b/simplematrixbotlib.git@master && \
     echo 'export PATH="$PATH:/usr/games"' >> /root/.bashrc && \
-    echo 'source /avocado-bot/.venv/bin/activate' >> /root/.bashrc
+    echo 'source /venv/bin/activate' >> /root/.bashrc
 
 RUN ln -s /usr/games/fortune /usr/bin
 
-COPY init.sh /avocado-bot/
+# COPY init.sh /avocado-bot/
 
-CMD [ "./init.sh" ]
-# CMD [ "/avocado-bot/.venv/bin/python", "-m", "avocado" ]
+# CMD [ "./init.sh" ]
+CMD [ "/venv/bin/python", "-m", "avocado" ]
